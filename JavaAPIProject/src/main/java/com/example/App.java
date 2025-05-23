@@ -37,10 +37,8 @@ public class App extends JPanel implements ActionListener
         this.add(label);
         label.setPreferredSize(new Dimension(50, 20));
         label.setBounds(10,10,100,20);
-        URL url = new URL("https://api.thecatapi.com/v1/images/search");
-        BufferedImage image = ImageIO.read(url);
-        ImageIcon icon = new ImageIcon(image);
-        sprite = icon.getImage();
+        sprite = API.getImageFromURL("https://api.thecatapi.com/v1/images/search");
+        System.out.println(API.getData("https://api.thecatapi.com/v1/images/search"));
         timer = new Timer(20, this);
         timer.start();
         

@@ -25,7 +25,7 @@ public class API {
         }
         buff.close();
         connection.disconnect();
-        return content.toString();
+        return content.substring(content.indexOf("\"h") + 1, content.indexOf("\",\"width")).toString();
     }
     public static BufferedImage getImageFromURL(String imageUrl) {
         try {

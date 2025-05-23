@@ -18,8 +18,15 @@ public class App extends JPanel implements ActionListener
     JButton button;
     JButton start;
     JLabel label;
+    JLabel label2 = new JLabel();
+    JFrame frame = new JFrame("a");
     public App() throws Exception {
         setLayout(null);
+        frame.add(this);
+        frame.setSize(1920, 1030);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.setLayout(null);
         button = new JButton();
         button.setPreferredSize(new Dimension(30, 30));
         button.setOpaque(false);
@@ -38,7 +45,10 @@ public class App extends JPanel implements ActionListener
         label.setPreferredSize(new Dimension(50, 20));
         label.setBounds(10,10,100,20);
         sprite = API.getImageFromURL("https://api.thecatapi.com/v1/images/search");
-        System.out.println(API.getData("https://api.thecatapi.com/v1/images/search"));
+        label2.setIcon(new ImageIcon(sprite.getScaledInstance(600, 600, Image.SCALE_SMOOTH)));
+        this.add(label2);
+        frame.add(label2);
+        frame.pack();
         timer = new Timer(20, this);
         timer.start();
         
@@ -73,12 +83,6 @@ public class App extends JPanel implements ActionListener
     }
     public static void main( String[] args ) throws Exception
     {
-        JFrame frame = new JFrame("a");
         App game = new App();
-        frame.add(game);
-        frame.setSize(1920, 1030);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        frame.setLayout(null);
     }
 }

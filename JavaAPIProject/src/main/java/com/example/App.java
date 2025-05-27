@@ -24,33 +24,31 @@ public class App extends JPanel implements ActionListener
         setLayout(null);
         frame.add(this);
         frame.setSize(1920, 1030);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
         frame.setLayout(null);
         button = new JButton();
-        button.setPreferredSize(new Dimension(30, 30));
+        button.setPreferredSize(new Dimension(100, 100));
         button.setOpaque(false);
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
         button.setLayout(null);
-        button.setBounds(0, 100, 30, 30);
-        this.add(button);
+        button.setBounds(0, 100, 100, 100);
+        frame.add(button);
         start = new JButton("Start");
         start.setPreferredSize(new Dimension(100, 30));
         start.setBounds(900, 0, 100, 30);
         start.addActionListener(this);
-        this.add(start);
+        frame.add(start);
         label = new JLabel("Score: " + count);
-        this.add(label);
+        frame.add(label);
         label.setPreferredSize(new Dimension(50, 20));
         label.setBounds(10,10,100,20);
-        sprite = API.getImageFromURL("https://api.thecatapi.com/v1/images/search");
-        label2.setIcon(new ImageIcon(sprite.getScaledInstance(600, 600, Image.SCALE_SMOOTH)));
-        this.add(label2);
+        label2.setIcon(new ImageIcon(new ImageIcon(new URL(API.getData("https://api.thecatapi.com/v1/images/search"))).getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH)));
+        label2.setBounds(100, 100, 100, 100);
         frame.add(label2);
-        frame.pack();
         timer = new Timer(20, this);
         timer.start();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
     }
     protected void paintComponent(Graphics g) {

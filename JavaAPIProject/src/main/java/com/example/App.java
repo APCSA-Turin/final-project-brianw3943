@@ -39,11 +39,13 @@ public class App extends JPanel implements ActionListener
         start.addActionListener(this);
         frame.add(start);
         label = new JLabel("Score: " + count);
+        label.setVisible(false);
         frame.add(label);
         label.setPreferredSize(new Dimension(50, 20));
         label.setBounds(10,10,100,20);
-        label2.setIcon(new ImageIcon(new ImageIcon(new URL(API.getData("https://api.thecatapi.com/v1/images/search"))).getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH)));
-        label2.setBounds(100, 100, 100, 100);
+        label2.setIcon(new ImageIcon(new ImageIcon(new URL(API.getData("https://api.thecatapi.com/v1/images/search"))).getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH)));
+        label2.setBounds(0, 100, 100, 100);
+        label2.setVisible(false);
         frame.add(label2);
         timer = new Timer(20, this);
         timer.start();
@@ -53,28 +55,34 @@ public class App extends JPanel implements ActionListener
     }
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(sprite,position[0],position[1],50,50, this);
+        label2.setBounds(position[0],position[1], label2.getWidth(), label2.getHeight());
 
         /*Uncomment below and comment above command if you want to use Java Swings native shapes like a circle instead of an image*/
-        g.setColor(Color.BLUE);
-        g.fillOval(position[0], position[1], 30, 30); // Draw a blue ball
     }
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button) {
             label.setText("Score: " + count);
             count++;
-            int random = (int) (Math.random() * 1760) + 100;
-            int random2 = (int) (Math.random() * 920) + 50;
+            int random = (int) (Math.random() * 1690) + 100;
+            int random2 = (int) (Math.random() * 850) + 50;
             position[0] = random;
             position[1] = random2;
+            try {
+                label2.setIcon(new ImageIcon(new ImageIcon(new URL(API.getData("https://api.thecatapi.com/v1/images/search"))).getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH)));
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
             Dimension size = button.getPreferredSize();
             button.setBounds(random, random2, size.width, size.height);
+            label2.setBounds(random, random2, size.width, size.height);
             repaint();
         } else if (e.getSource() == start) {
             count++;
             start.setVisible(false);
             start.removeActionListener(this);
             button.addActionListener(this);
+            label2.setVisible(true);
+            label.setVisible(true);
         } else {
             
         }

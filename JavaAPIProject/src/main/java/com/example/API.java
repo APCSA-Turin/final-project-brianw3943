@@ -31,14 +31,5 @@ public class API {
         }
         return string;
     }
-    public static BufferedImage getImageFromURL(String imageUrl) {
-        try {
-            URL url = new URL(imageUrl);
-            return ImageIO.read(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 }
 

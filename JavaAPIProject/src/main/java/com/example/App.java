@@ -87,8 +87,4 @@ public class App extends JPanel implements ActionListener
             
         }
     }
-    public static void main( String[] args ) throws Exception
-    {
-        App game = new App();
-    }
 }
